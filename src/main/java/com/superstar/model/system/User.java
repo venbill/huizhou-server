@@ -6,6 +6,10 @@ import java.util.List;
 public class User {
     private Long userId;
 
+    private String nick;
+
+    private String picture;
+
     private String username;
 
     private String password;
@@ -50,6 +54,22 @@ public class User {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick == null ? null : nick.trim();
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture == null ? null : picture.trim();
     }
 
     public String getUsername() {
@@ -195,6 +215,7 @@ public class User {
     public void setUpdateUser(Long updateUser) {
         this.updateUser = updateUser;
     }
+
 
     public List<Role> getRoles() {
         return roles;

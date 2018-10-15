@@ -23,23 +23,46 @@
         </jdbcConnection>
 
         <!--<javaModelGenerator targetPackage="com.superstar.model.system" targetProject="src/main/java">-->
-        <javaModelGenerator targetPackage="com.superstar.model.goods" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.superstar.model.shop" targetProject="src/main/java">
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="mapper.system" targetProject="src/main/resources"/>
+        <sqlMapGenerator targetPackage="mapper.shop" targetProject="src/main/resources"/>
 
         <!--<javaClientGenerator type="XMLMAPPER" targetPackage="com.superstar.dao.system" targetProject="src/main/java"/>-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.superstar.dao.goods" targetProject="src/main/java"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.superstar.dao.shop" targetProject="src/main/java"/>
 
 
          <!--<table tableName="sys_user" domainObjectName="User" enableCountByExample="false">-->
          <!--</table>-->
          <!--<table tableName="sys_role" domainObjectName="Role" enableCountByExample="false">-->
          <!--</table>-->
-         <table tableName="sho_goods_big_type" domainObjectName="GoodsBigType" enableCountByExample="false">
-         </table>
-         <table tableName="sho_goods_small_type" domainObjectName="GoodsSmallType" enableCountByExample="false">
+         <!--<table tableName="sys_banner" domainObjectName="Banner" enableCountByExample="false">-->
+         <!--</table>-->
+         <!--<table tableName="sho_goods_big_type" domainObjectName="GoodsBigType" enableCountByExample="false">-->
+         <!--</table>-->
+         <!--<table tableName="sho_goods_small_type" domainObjectName="GoodsSmallType" enableCountByExample="false">-->
+         <!--</table>-->
+
+         <!--<table tableName="sho_shop" domainObjectName="Shop" enableCountByExample="false">-->
+         <!--</table>-->
+         <!--<table tableName="sho_shop_types" domainObjectName="ShopTypes" enableCountByExample="false">-->
+         <!--</table>-->
+         <!--<table tableName="sho_goods" domainObjectName="Goods" enableCountByExample="false">-->
+         <!--</table>-->
+         <!--<table tableName="sho_goods_activity" domainObjectName="GoodsActivity" enableCountByExample="false">-->
+         <!--</table>-->
+         <!--<table tableName="sho_goods_attribute" domainObjectName="GoodsAttribute" enableCountByExample="false">-->
+         <!--</table>-->
+         <!--<table tableName="sho_goods_attribute_key" domainObjectName="GoodsAttributeKey" enableCountByExample="false">-->
+         <!--</table>-->
+         <!--<table tableName="sho_goods_attribute_value" domainObjectName="GoodsAttributeValue" enableCountByExample="false">-->
+         <!--</table>-->
+         <!--<table tableName="sho_goods_price" domainObjectName="GoodsPrice" enableCountByExample="false">-->
+         <!--</table>-->
+         <!--<table tableName="sho_goods_tag" domainObjectName="GoodsTag" enableCountByExample="false">-->
+         <!--</table>-->
+         <table tableName="sho_goods_comment" domainObjectName="GoodsComment" enableCountByExample="false">
          </table>
 
 

@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.superstar.dao.shop.ShopMapper" >
+  <resultMap id="BaseResultMap" type="com.superstar.model.shop.Shop" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="header_picture" property="headerPicture" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="address_x" property="addressX" jdbcType="DOUBLE" />
+    <result column="address_y" property="addressY" jdbcType="DOUBLE" />
+    <result column="province" property="province" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="county" property="county" jdbcType="INTEGER" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="county_name" property="countyName" jdbcType="VARCHAR" />
+    <result column="big_types" property="bigTypes" jdbcType="VARCHAR" />
+    <result column="small_types" property="smallTypes" jdbcType="VARCHAR" />
+    <result column="open_homestay" property="openHomestay" jdbcType="BIT" />
+    <result column="open_buy" property="openBuy" jdbcType="BIT" />
+    <result column="service_time" property="serviceTime" jdbcType="VARCHAR" />
+    <result column="service_tel" property="serviceTel" jdbcType="VARCHAR" />
+    <result column="shop_keeper" property="shopKeeper" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, shop_name, description, header_picture, status, create_time, create_user, update_time, 
+    update_user, address, address_x, address_y, province, city, county, province_name, 
+    city_name, county_name, big_types, small_types, open_homestay, open_buy, service_time, 
+    service_tel, shop_keeper
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.superstar.model.shop.ShopExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sho_shop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sho_shop
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sho_shop
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.superstar.model.shop.ShopExample" >
+    delete from sho_shop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.superstar.model.shop.Shop" >
+    insert into sho_shop (id, shop_name, description, 
+      header_picture, status, create_time, 
+      create_user, update_time, update_user, 
+      address, address_x, address_y, 
+      province, city, county, 
+      province_name, city_name, county_name, 
+      big_types, small_types, open_homestay, 
+      open_buy, service_time, service_tel, 
+      shop_keeper)
+    values (#{id,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{headerPicture,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=BIGINT}, 
+      #{address,jdbcType=VARCHAR}, #{addressX,jdbcType=DOUBLE}, #{addressY,jdbcType=DOUBLE}, 
+      #{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, #{county,jdbcType=INTEGER}, 
+      #{provinceName,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, #{countyName,jdbcType=VARCHAR}, 
+      #{bigTypes,jdbcType=VARCHAR}, #{smallTypes,jdbcType=VARCHAR}, #{openHomestay,jdbcType=BIT}, 
+      #{openBuy,jdbcType=BIT}, #{serviceTime,jdbcType=VARCHAR}, #{serviceTel,jdbcType=VARCHAR}, 
+      #{shopKeeper,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.superstar.model.shop.Shop" >
+    insert into sho_shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="headerPicture != null" >
+        header_picture,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="addressX != null" >
+        address_x,
+      </if>
+      <if test="addressY != null" >
+        address_y,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="countyName != null" >
+        county_name,
+      </if>
+      <if test="bigTypes != null" >
+        big_types,
+      </if>
+      <if test="smallTypes != null" >
+        small_types,
+      </if>
+      <if test="openHomestay != null" >
+        open_homestay,
+      </if>
+      <if test="openBuy != null" >
+        open_buy,
+      </if>
+      <if test="serviceTime != null" >
+        service_time,
+      </if>
+      <if test="serviceTel != null" >
+        service_tel,
+      </if>
+      <if test="shopKeeper != null" >
+        shop_keeper,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="headerPicture != null" >
+        #{headerPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="addressX != null" >
+        #{addressX,jdbcType=DOUBLE},
+      </if>
+      <if test="addressY != null" >
+        #{addressY,jdbcType=DOUBLE},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null" >
+        #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="bigTypes != null" >
+        #{bigTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="smallTypes != null" >
+        #{smallTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="openHomestay != null" >
+        #{openHomestay,jdbcType=BIT},
+      </if>
+      <if test="openBuy != null" >
+        #{openBuy,jdbcType=BIT},
+      </if>
+      <if test="serviceTime != null" >
+        #{serviceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTel != null" >
+        #{serviceTel,jdbcType=VARCHAR},
+      </if>
+      <if test="shopKeeper != null" >
+        #{shopKeeper,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sho_shop
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopName != null" >
+        shop_name = #{record.shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.headerPicture != null" >
+        header_picture = #{record.headerPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUser != null" >
+        update_user = #{record.updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressX != null" >
+        address_x = #{record.addressX,jdbcType=DOUBLE},
+      </if>
+      <if test="record.addressY != null" >
+        address_y = #{record.addressY,jdbcType=DOUBLE},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=INTEGER},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=INTEGER},
+      </if>
+      <if test="record.county != null" >
+        county = #{record.county,jdbcType=INTEGER},
+      </if>
+      <if test="record.provinceName != null" >
+        province_name = #{record.provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityName != null" >
+        city_name = #{record.cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countyName != null" >
+        county_name = #{record.countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bigTypes != null" >
+        big_types = #{record.bigTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smallTypes != null" >
+        small_types = #{record.smallTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openHomestay != null" >
+        open_homestay = #{record.openHomestay,jdbcType=BIT},
+      </if>
+      <if test="record.openBuy != null" >
+        open_buy = #{record.openBuy,jdbcType=BIT},
+      </if>
+      <if test="record.serviceTime != null" >
+        service_time = #{record.serviceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceTel != null" >
+        service_tel = #{record.serviceTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopKeeper != null" >
+        shop_keeper = #{record.shopKeeper,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sho_shop
+    set id = #{record.id,jdbcType=INTEGER},
+      shop_name = #{record.shopName,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      header_picture = #{record.headerPicture,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_user = #{record.updateUser,jdbcType=BIGINT},
+      address = #{record.address,jdbcType=VARCHAR},
+      address_x = #{record.addressX,jdbcType=DOUBLE},
+      address_y = #{record.addressY,jdbcType=DOUBLE},
+      province = #{record.province,jdbcType=INTEGER},
+      city = #{record.city,jdbcType=INTEGER},
+      county = #{record.county,jdbcType=INTEGER},
+      province_name = #{record.provinceName,jdbcType=VARCHAR},
+      city_name = #{record.cityName,jdbcType=VARCHAR},
+      county_name = #{record.countyName,jdbcType=VARCHAR},
+      big_types = #{record.bigTypes,jdbcType=VARCHAR},
+      small_types = #{record.smallTypes,jdbcType=VARCHAR},
+      open_homestay = #{record.openHomestay,jdbcType=BIT},
+      open_buy = #{record.openBuy,jdbcType=BIT},
+      service_time = #{record.serviceTime,jdbcType=VARCHAR},
+      service_tel = #{record.serviceTel,jdbcType=VARCHAR},
+      shop_keeper = #{record.shopKeeper,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.superstar.model.shop.Shop" >
+    update sho_shop
+    <set >
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="headerPicture != null" >
+        header_picture = #{headerPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="addressX != null" >
+        address_x = #{addressX,jdbcType=DOUBLE},
+      </if>
+      <if test="addressY != null" >
+        address_y = #{addressY,jdbcType=DOUBLE},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null" >
+        county_name = #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="bigTypes != null" >
+        big_types = #{bigTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="smallTypes != null" >
+        small_types = #{smallTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="openHomestay != null" >
+        open_homestay = #{openHomestay,jdbcType=BIT},
+      </if>
+      <if test="openBuy != null" >
+        open_buy = #{openBuy,jdbcType=BIT},
+      </if>
+      <if test="serviceTime != null" >
+        service_time = #{serviceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTel != null" >
+        service_tel = #{serviceTel,jdbcType=VARCHAR},
+      </if>
+      <if test="shopKeeper != null" >
+        shop_keeper = #{shopKeeper,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.superstar.model.shop.Shop" >
+    update sho_shop
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      header_picture = #{headerPicture,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=BIGINT},
+      address = #{address,jdbcType=VARCHAR},
+      address_x = #{addressX,jdbcType=DOUBLE},
+      address_y = #{addressY,jdbcType=DOUBLE},
+      province = #{province,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      county = #{county,jdbcType=INTEGER},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      county_name = #{countyName,jdbcType=VARCHAR},
+      big_types = #{bigTypes,jdbcType=VARCHAR},
+      small_types = #{smallTypes,jdbcType=VARCHAR},
+      open_homestay = #{openHomestay,jdbcType=BIT},
+      open_buy = #{openBuy,jdbcType=BIT},
+      service_time = #{serviceTime,jdbcType=VARCHAR},
+      service_tel = #{serviceTel,jdbcType=VARCHAR},
+      shop_keeper = #{shopKeeper,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

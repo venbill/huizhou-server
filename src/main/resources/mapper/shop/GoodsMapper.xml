@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.superstar.dao.shop.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.superstar.model.shop.Goods" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="big_type" property="bigType" jdbcType="INTEGER" />
+    <result column="small_type" property="smallType" jdbcType="INTEGER" />
+    <result column="shop_type" property="shopType" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="picture1" property="picture1" jdbcType="VARCHAR" />
+    <result column="picture2" property="picture2" jdbcType="VARCHAR" />
+    <result column="picture3" property="picture3" jdbcType="VARCHAR" />
+    <result column="picture4" property="picture4" jdbcType="VARCHAR" />
+    <result column="price_min" property="priceMin" jdbcType="DECIMAL" />
+    <result column="price_max" property="priceMax" jdbcType="DECIMAL" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="have_express" property="haveExpress" jdbcType="BIT" />
+    <result column="express_free" property="expressFree" jdbcType="BIT" />
+    <result column="express_money" property="expressMoney" jdbcType="DECIMAL" />
+    <result column="select_attribute" property="selectAttribute" jdbcType="BIT" />
+    <result column="store_no" property="storeNo" jdbcType="INTEGER" />
+    <result column="sale_no" property="saleNo" jdbcType="INTEGER" />
+    <result column="tags" property="tags" jdbcType="VARCHAR" />
+    <result column="comment_no" property="commentNo" jdbcType="BIGINT" />
+    <result column="average_score" property="averageScore" jdbcType="DOUBLE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.superstar.model.shop.Goods" extends="BaseResultMap" >
+    <result column="detail_pictures" property="detailPictures" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, goods_name, description, big_type, small_type, shop_type, shop_id, picture, picture1, 
+    picture2, picture3, picture4, price_min, price_max, price, have_express, express_free, 
+    express_money, select_attribute, store_no, sale_no, tags, comment_no, average_score
+  </sql>
+  <sql id="Blob_Column_List" >
+    detail_pictures
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.superstar.model.shop.GoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sho_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.superstar.model.shop.GoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sho_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sho_goods
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sho_goods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.superstar.model.shop.GoodsExample" >
+    delete from sho_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.superstar.model.shop.Goods" >
+    insert into sho_goods (id, goods_name, description, 
+      big_type, small_type, shop_type, 
+      shop_id, picture, picture1, 
+      picture2, picture3, picture4, 
+      price_min, price_max, price, 
+      have_express, express_free, express_money, 
+      select_attribute, store_no, sale_no, 
+      tags, comment_no, average_score, 
+      detail_pictures)
+    values (#{id,jdbcType=BIGINT}, #{goodsName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{bigType,jdbcType=INTEGER}, #{smallType,jdbcType=INTEGER}, #{shopType,jdbcType=INTEGER}, 
+      #{shopId,jdbcType=INTEGER}, #{picture,jdbcType=VARCHAR}, #{picture1,jdbcType=VARCHAR}, 
+      #{picture2,jdbcType=VARCHAR}, #{picture3,jdbcType=VARCHAR}, #{picture4,jdbcType=VARCHAR}, 
+      #{priceMin,jdbcType=DECIMAL}, #{priceMax,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, 
+      #{haveExpress,jdbcType=BIT}, #{expressFree,jdbcType=BIT}, #{expressMoney,jdbcType=DECIMAL}, 
+      #{selectAttribute,jdbcType=BIT}, #{storeNo,jdbcType=INTEGER}, #{saleNo,jdbcType=INTEGER}, 
+      #{tags,jdbcType=VARCHAR}, #{commentNo,jdbcType=BIGINT}, #{averageScore,jdbcType=DOUBLE}, 
+      #{detailPictures,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.superstar.model.shop.Goods" >
+    insert into sho_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="bigType != null" >
+        big_type,
+      </if>
+      <if test="smallType != null" >
+        small_type,
+      </if>
+      <if test="shopType != null" >
+        shop_type,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="picture1 != null" >
+        picture1,
+      </if>
+      <if test="picture2 != null" >
+        picture2,
+      </if>
+      <if test="picture3 != null" >
+        picture3,
+      </if>
+      <if test="picture4 != null" >
+        picture4,
+      </if>
+      <if test="priceMin != null" >
+        price_min,
+      </if>
+      <if test="priceMax != null" >
+        price_max,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="haveExpress != null" >
+        have_express,
+      </if>
+      <if test="expressFree != null" >
+        express_free,
+      </if>
+      <if test="expressMoney != null" >
+        express_money,
+      </if>
+      <if test="selectAttribute != null" >
+        select_attribute,
+      </if>
+      <if test="storeNo != null" >
+        store_no,
+      </if>
+      <if test="saleNo != null" >
+        sale_no,
+      </if>
+      <if test="tags != null" >
+        tags,
+      </if>
+      <if test="commentNo != null" >
+        comment_no,
+      </if>
+      <if test="averageScore != null" >
+        average_score,
+      </if>
+      <if test="detailPictures != null" >
+        detail_pictures,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="bigType != null" >
+        #{bigType,jdbcType=INTEGER},
+      </if>
+      <if test="smallType != null" >
+        #{smallType,jdbcType=INTEGER},
+      </if>
+      <if test="shopType != null" >
+        #{shopType,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="picture1 != null" >
+        #{picture1,jdbcType=VARCHAR},
+      </if>
+      <if test="picture2 != null" >
+        #{picture2,jdbcType=VARCHAR},
+      </if>
+      <if test="picture3 != null" >
+        #{picture3,jdbcType=VARCHAR},
+      </if>
+      <if test="picture4 != null" >
+        #{picture4,jdbcType=VARCHAR},
+      </if>
+      <if test="priceMin != null" >
+        #{priceMin,jdbcType=DECIMAL},
+      </if>
+      <if test="priceMax != null" >
+        #{priceMax,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="haveExpress != null" >
+        #{haveExpress,jdbcType=BIT},
+      </if>
+      <if test="expressFree != null" >
+        #{expressFree,jdbcType=BIT},
+      </if>
+      <if test="expressMoney != null" >
+        #{expressMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="selectAttribute != null" >
+        #{selectAttribute,jdbcType=BIT},
+      </if>
+      <if test="storeNo != null" >
+        #{storeNo,jdbcType=INTEGER},
+      </if>
+      <if test="saleNo != null" >
+        #{saleNo,jdbcType=INTEGER},
+      </if>
+      <if test="tags != null" >
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="commentNo != null" >
+        #{commentNo,jdbcType=BIGINT},
+      </if>
+      <if test="averageScore != null" >
+        #{averageScore,jdbcType=DOUBLE},
+      </if>
+      <if test="detailPictures != null" >
+        #{detailPictures,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sho_goods
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsName != null" >
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bigType != null" >
+        big_type = #{record.bigType,jdbcType=INTEGER},
+      </if>
+      <if test="record.smallType != null" >
+        small_type = #{record.smallType,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopType != null" >
+        shop_type = #{record.shopType,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        shop_id = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.picture != null" >
+        picture = #{record.picture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picture1 != null" >
+        picture1 = #{record.picture1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picture2 != null" >
+        picture2 = #{record.picture2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picture3 != null" >
+        picture3 = #{record.picture3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picture4 != null" >
+        picture4 = #{record.picture4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priceMin != null" >
+        price_min = #{record.priceMin,jdbcType=DECIMAL},
+      </if>
+      <if test="record.priceMax != null" >
+        price_max = #{record.priceMax,jdbcType=DECIMAL},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.haveExpress != null" >
+        have_express = #{record.haveExpress,jdbcType=BIT},
+      </if>
+      <if test="record.expressFree != null" >
+        express_free = #{record.expressFree,jdbcType=BIT},
+      </if>
+      <if test="record.expressMoney != null" >
+        express_money = #{record.expressMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.selectAttribute != null" >
+        select_attribute = #{record.selectAttribute,jdbcType=BIT},
+      </if>
+      <if test="record.storeNo != null" >
+        store_no = #{record.storeNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.saleNo != null" >
+        sale_no = #{record.saleNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.tags != null" >
+        tags = #{record.tags,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commentNo != null" >
+        comment_no = #{record.commentNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.averageScore != null" >
+        average_score = #{record.averageScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.detailPictures != null" >
+        detail_pictures = #{record.detailPictures,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update sho_goods
+    set id = #{record.id,jdbcType=BIGINT},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      big_type = #{record.bigType,jdbcType=INTEGER},
+      small_type = #{record.smallType,jdbcType=INTEGER},
+      shop_type = #{record.shopType,jdbcType=INTEGER},
+      shop_id = #{record.shopId,jdbcType=INTEGER},
+      picture = #{record.picture,jdbcType=VARCHAR},
+      picture1 = #{record.picture1,jdbcType=VARCHAR},
+      picture2 = #{record.picture2,jdbcType=VARCHAR},
+      picture3 = #{record.picture3,jdbcType=VARCHAR},
+      picture4 = #{record.picture4,jdbcType=VARCHAR},
+      price_min = #{record.priceMin,jdbcType=DECIMAL},
+      price_max = #{record.priceMax,jdbcType=DECIMAL},
+      price = #{record.price,jdbcType=DECIMAL},
+      have_express = #{record.haveExpress,jdbcType=BIT},
+      express_free = #{record.expressFree,jdbcType=BIT},
+      express_money = #{record.expressMoney,jdbcType=DECIMAL},
+      select_attribute = #{record.selectAttribute,jdbcType=BIT},
+      store_no = #{record.storeNo,jdbcType=INTEGER},
+      sale_no = #{record.saleNo,jdbcType=INTEGER},
+      tags = #{record.tags,jdbcType=VARCHAR},
+      comment_no = #{record.commentNo,jdbcType=BIGINT},
+      average_score = #{record.averageScore,jdbcType=DOUBLE},
+      detail_pictures = #{record.detailPictures,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sho_goods
+    set id = #{record.id,jdbcType=BIGINT},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      big_type = #{record.bigType,jdbcType=INTEGER},
+      small_type = #{record.smallType,jdbcType=INTEGER},
+      shop_type = #{record.shopType,jdbcType=INTEGER},
+      shop_id = #{record.shopId,jdbcType=INTEGER},
+      picture = #{record.picture,jdbcType=VARCHAR},
+      picture1 = #{record.picture1,jdbcType=VARCHAR},
+      picture2 = #{record.picture2,jdbcType=VARCHAR},
+      picture3 = #{record.picture3,jdbcType=VARCHAR},
+      picture4 = #{record.picture4,jdbcType=VARCHAR},
+      price_min = #{record.priceMin,jdbcType=DECIMAL},
+      price_max = #{record.priceMax,jdbcType=DECIMAL},
+      price = #{record.price,jdbcType=DECIMAL},
+      have_express = #{record.haveExpress,jdbcType=BIT},
+      express_free = #{record.expressFree,jdbcType=BIT},
+      express_money = #{record.expressMoney,jdbcType=DECIMAL},
+      select_attribute = #{record.selectAttribute,jdbcType=BIT},
+      store_no = #{record.storeNo,jdbcType=INTEGER},
+      sale_no = #{record.saleNo,jdbcType=INTEGER},
+      tags = #{record.tags,jdbcType=VARCHAR},
+      comment_no = #{record.commentNo,jdbcType=BIGINT},
+      average_score = #{record.averageScore,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.superstar.model.shop.Goods" >
+    update sho_goods
+    <set >
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="bigType != null" >
+        big_type = #{bigType,jdbcType=INTEGER},
+      </if>
+      <if test="smallType != null" >
+        small_type = #{smallType,jdbcType=INTEGER},
+      </if>
+      <if test="shopType != null" >
+        shop_type = #{shopType,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="picture1 != null" >
+        picture1 = #{picture1,jdbcType=VARCHAR},
+      </if>
+      <if test="picture2 != null" >
+        picture2 = #{picture2,jdbcType=VARCHAR},
+      </if>
+      <if test="picture3 != null" >
+        picture3 = #{picture3,jdbcType=VARCHAR},
+      </if>
+      <if test="picture4 != null" >
+        picture4 = #{picture4,jdbcType=VARCHAR},
+      </if>
+      <if test="priceMin != null" >
+        price_min = #{priceMin,jdbcType=DECIMAL},
+      </if>
+      <if test="priceMax != null" >
+        price_max = #{priceMax,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="haveExpress != null" >
+        have_express = #{haveExpress,jdbcType=BIT},
+      </if>
+      <if test="expressFree != null" >
+        express_free = #{expressFree,jdbcType=BIT},
+      </if>
+      <if test="expressMoney != null" >
+        express_money = #{expressMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="selectAttribute != null" >
+        select_attribute = #{selectAttribute,jdbcType=BIT},
+      </if>
+      <if test="storeNo != null" >
+        store_no = #{storeNo,jdbcType=INTEGER},
+      </if>
+      <if test="saleNo != null" >
+        sale_no = #{saleNo,jdbcType=INTEGER},
+      </if>
+      <if test="tags != null" >
+        tags = #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="commentNo != null" >
+        comment_no = #{commentNo,jdbcType=BIGINT},
+      </if>
+      <if test="averageScore != null" >
+        average_score = #{averageScore,jdbcType=DOUBLE},
+      </if>
+      <if test="detailPictures != null" >
+        detail_pictures = #{detailPictures,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.superstar.model.shop.Goods" >
+    update sho_goods
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      big_type = #{bigType,jdbcType=INTEGER},
+      small_type = #{smallType,jdbcType=INTEGER},
+      shop_type = #{shopType,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      picture = #{picture,jdbcType=VARCHAR},
+      picture1 = #{picture1,jdbcType=VARCHAR},
+      picture2 = #{picture2,jdbcType=VARCHAR},
+      picture3 = #{picture3,jdbcType=VARCHAR},
+      picture4 = #{picture4,jdbcType=VARCHAR},
+      price_min = #{priceMin,jdbcType=DECIMAL},
+      price_max = #{priceMax,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DECIMAL},
+      have_express = #{haveExpress,jdbcType=BIT},
+      express_free = #{expressFree,jdbcType=BIT},
+      express_money = #{expressMoney,jdbcType=DECIMAL},
+      select_attribute = #{selectAttribute,jdbcType=BIT},
+      store_no = #{storeNo,jdbcType=INTEGER},
+      sale_no = #{saleNo,jdbcType=INTEGER},
+      tags = #{tags,jdbcType=VARCHAR},
+      comment_no = #{commentNo,jdbcType=BIGINT},
+      average_score = #{averageScore,jdbcType=DOUBLE},
+      detail_pictures = #{detailPictures,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.superstar.model.shop.Goods" >
+    update sho_goods
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      big_type = #{bigType,jdbcType=INTEGER},
+      small_type = #{smallType,jdbcType=INTEGER},
+      shop_type = #{shopType,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      picture = #{picture,jdbcType=VARCHAR},
+      picture1 = #{picture1,jdbcType=VARCHAR},
+      picture2 = #{picture2,jdbcType=VARCHAR},
+      picture3 = #{picture3,jdbcType=VARCHAR},
+      picture4 = #{picture4,jdbcType=VARCHAR},
+      price_min = #{priceMin,jdbcType=DECIMAL},
+      price_max = #{priceMax,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DECIMAL},
+      have_express = #{haveExpress,jdbcType=BIT},
+      express_free = #{expressFree,jdbcType=BIT},
+      express_money = #{expressMoney,jdbcType=DECIMAL},
+      select_attribute = #{selectAttribute,jdbcType=BIT},
+      store_no = #{storeNo,jdbcType=INTEGER},
+      sale_no = #{saleNo,jdbcType=INTEGER},
+      tags = #{tags,jdbcType=VARCHAR},
+      comment_no = #{commentNo,jdbcType=BIGINT},
+      average_score = #{averageScore,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

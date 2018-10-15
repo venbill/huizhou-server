@@ -3,6 +3,8 @@
 <mapper namespace="com.superstar.dao.system.UserMapper" >
   <resultMap id="BaseResultMap" type="com.superstar.model.system.User" >
     <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="nick" property="nick" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
@@ -21,11 +23,6 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="update_user" property="updateUser" jdbcType="BIGINT" />
-    <collection property="roles" ofType="com.superstar.model.system.Role">
-      <result column="role_id" property="roleId"/>
-      <result column="role_name" property="roleName"/>
-      <result column="role_cname" property="roleCname"/>
-    </collection>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -86,9 +83,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    user_id, username, password, phone, qq, wechat, email, is_deleted, is_enabled, disabled_reason, 
-    token, identifying_code, current_role, id_card, cname, create_user, create_time, 
-    update_time, update_user
+    user_id, nick, picture, username, password, phone, qq, wechat, email, is_deleted, 
+    is_enabled, disabled_reason, token, identifying_code, current_role, id_card, cname, 
+    create_user, create_time, update_time, update_user
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.superstar.model.system.UserExample" >
     select
@@ -121,26 +118,34 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.superstar.model.system.User" >
-    insert into sys_user (user_id, username, password, 
-      phone, qq, wechat, 
-      email, is_deleted, is_enabled, 
-      disabled_reason, token, identifying_code, 
-      current_role, id_card, cname, 
-      create_user, create_time, update_time, 
-      update_user)
-    values (#{userId,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BIT}, #{isEnabled,jdbcType=BIT}, 
-      #{disabledReason,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{identifyingCode,jdbcType=VARCHAR}, 
-      #{currentRole,jdbcType=INTEGER}, #{idCard,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, 
-      #{createUser,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{updateUser,jdbcType=BIGINT})
+    insert into sys_user (user_id, nick, picture, 
+      username, password, phone, 
+      qq, wechat, email, 
+      is_deleted, is_enabled, disabled_reason, 
+      token, identifying_code, current_role, 
+      id_card, cname, create_user, 
+      create_time, update_time, update_user
+      )
+    values (#{userId,jdbcType=BIGINT}, #{nick,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{isDeleted,jdbcType=BIT}, #{isEnabled,jdbcType=BIT}, #{disabledReason,jdbcType=VARCHAR}, 
+      #{token,jdbcType=VARCHAR}, #{identifyingCode,jdbcType=VARCHAR}, #{currentRole,jdbcType=INTEGER}, 
+      #{idCard,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, #{createUser,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=BIGINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.superstar.model.system.User" >
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
         user_id,
+      </if>
+      <if test="nick != null" >
+        nick,
+      </if>
+      <if test="picture != null" >
+        picture,
       </if>
       <if test="username != null" >
         username,
@@ -200,6 +205,12 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
         #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="nick != null" >
+        #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
       </if>
       <if test="username != null" >
         #{username,jdbcType=VARCHAR},
@@ -263,6 +274,12 @@
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=BIGINT},
       </if>
+      <if test="record.nick != null" >
+        nick = #{record.nick,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picture != null" >
+        picture = #{record.picture,jdbcType=VARCHAR},
+      </if>
       <if test="record.username != null" >
         username = #{record.username,jdbcType=VARCHAR},
       </if>
@@ -325,6 +342,8 @@
   <update id="updateByExample" parameterType="map" >
     update sys_user
     set user_id = #{record.userId,jdbcType=BIGINT},
+      nick = #{record.nick,jdbcType=VARCHAR},
+      picture = #{record.picture,jdbcType=VARCHAR},
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
@@ -350,6 +369,12 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.superstar.model.system.User" >
     update sys_user
     <set >
+      <if test="nick != null" >
+        nick = #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
       <if test="username != null" >
         username = #{username,jdbcType=VARCHAR},
       </if>
@@ -409,7 +434,9 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.superstar.model.system.User" >
     update sys_user
-    set username = #{username,jdbcType=VARCHAR},
+    set nick = #{nick,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       qq = #{qq,jdbcType=VARCHAR},
@@ -429,6 +456,8 @@
       update_user = #{updateUser,jdbcType=BIGINT}
     where user_id = #{userId,jdbcType=BIGINT}
   </update>
+
+
 
   <select id="findOneWithRolesByLogin" parameterType="java.lang.String" resultMap="BaseResultMap">
 
@@ -453,5 +482,4 @@
     WHERE u.is_deleted=0 and u.user_id = #{userId,jdbcType=BIGINT}
     GROUP BY u.user_id,r.role_id
   </select>
-
 </mapper>

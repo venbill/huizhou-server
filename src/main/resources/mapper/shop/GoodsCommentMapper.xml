@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.superstar.dao.shop.GoodsCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.superstar.model.shop.GoodsComment" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="goods_detail_id" property="goodsDetailId" jdbcType="BIGINT" />
+    <result column="attributes_values_content" property="attributesValuesContent" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="comment_pictures" property="commentPictures" jdbcType="VARCHAR" />
+    <result column="reply" property="reply" jdbcType="VARCHAR" />
+    <result column="reply_pictures" property="replyPictures" jdbcType="VARCHAR" />
+    <result column="reply_user" property="replyUser" jdbcType="BIGINT" />
+    <result column="reply_time" property="replyTime" jdbcType="TIMESTAMP" />
+    <result column="score" property="score" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, goods_detail_id, attributes_values_content, goods_id, create_time, user_id, comment, 
+    comment_pictures, reply, reply_pictures, reply_user, reply_time, score
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.superstar.model.shop.GoodsCommentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sho_goods_comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sho_goods_comment
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sho_goods_comment
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.superstar.model.shop.GoodsCommentExample" >
+    delete from sho_goods_comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.superstar.model.shop.GoodsComment" >
+    insert into sho_goods_comment (id, goods_detail_id, attributes_values_content, 
+      goods_id, create_time, user_id, 
+      comment, comment_pictures, reply, 
+      reply_pictures, reply_user, reply_time, 
+      score)
+    values (#{id,jdbcType=BIGINT}, #{goodsDetailId,jdbcType=BIGINT}, #{attributesValuesContent,jdbcType=VARCHAR}, 
+      #{goodsId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=BIGINT}, 
+      #{comment,jdbcType=VARCHAR}, #{commentPictures,jdbcType=VARCHAR}, #{reply,jdbcType=VARCHAR}, 
+      #{replyPictures,jdbcType=VARCHAR}, #{replyUser,jdbcType=BIGINT}, #{replyTime,jdbcType=TIMESTAMP}, 
+      #{score,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.superstar.model.shop.GoodsComment" >
+    insert into sho_goods_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsDetailId != null" >
+        goods_detail_id,
+      </if>
+      <if test="attributesValuesContent != null" >
+        attributes_values_content,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="commentPictures != null" >
+        comment_pictures,
+      </if>
+      <if test="reply != null" >
+        reply,
+      </if>
+      <if test="replyPictures != null" >
+        reply_pictures,
+      </if>
+      <if test="replyUser != null" >
+        reply_user,
+      </if>
+      <if test="replyTime != null" >
+        reply_time,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodsDetailId != null" >
+        #{goodsDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="attributesValuesContent != null" >
+        #{attributesValuesContent,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="commentPictures != null" >
+        #{commentPictures,jdbcType=VARCHAR},
+      </if>
+      <if test="reply != null" >
+        #{reply,jdbcType=VARCHAR},
+      </if>
+      <if test="replyPictures != null" >
+        #{replyPictures,jdbcType=VARCHAR},
+      </if>
+      <if test="replyUser != null" >
+        #{replyUser,jdbcType=BIGINT},
+      </if>
+      <if test="replyTime != null" >
+        #{replyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sho_goods_comment
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsDetailId != null" >
+        goods_detail_id = #{record.goodsDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="record.attributesValuesContent != null" >
+        attributes_values_content = #{record.attributesValuesContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsId != null" >
+        goods_id = #{record.goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.comment != null" >
+        comment = #{record.comment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commentPictures != null" >
+        comment_pictures = #{record.commentPictures,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reply != null" >
+        reply = #{record.reply,jdbcType=VARCHAR},
+      </if>
+      <if test="record.replyPictures != null" >
+        reply_pictures = #{record.replyPictures,jdbcType=VARCHAR},
+      </if>
+      <if test="record.replyUser != null" >
+        reply_user = #{record.replyUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.replyTime != null" >
+        reply_time = #{record.replyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sho_goods_comment
+    set id = #{record.id,jdbcType=BIGINT},
+      goods_detail_id = #{record.goodsDetailId,jdbcType=BIGINT},
+      attributes_values_content = #{record.attributesValuesContent,jdbcType=VARCHAR},
+      goods_id = #{record.goodsId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      comment = #{record.comment,jdbcType=VARCHAR},
+      comment_pictures = #{record.commentPictures,jdbcType=VARCHAR},
+      reply = #{record.reply,jdbcType=VARCHAR},
+      reply_pictures = #{record.replyPictures,jdbcType=VARCHAR},
+      reply_user = #{record.replyUser,jdbcType=BIGINT},
+      reply_time = #{record.replyTime,jdbcType=TIMESTAMP},
+      score = #{record.score,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.superstar.model.shop.GoodsComment" >
+    update sho_goods_comment
+    <set >
+      <if test="goodsDetailId != null" >
+        goods_detail_id = #{goodsDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="attributesValuesContent != null" >
+        attributes_values_content = #{attributesValuesContent,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="commentPictures != null" >
+        comment_pictures = #{commentPictures,jdbcType=VARCHAR},
+      </if>
+      <if test="reply != null" >
+        reply = #{reply,jdbcType=VARCHAR},
+      </if>
+      <if test="replyPictures != null" >
+        reply_pictures = #{replyPictures,jdbcType=VARCHAR},
+      </if>
+      <if test="replyUser != null" >
+        reply_user = #{replyUser,jdbcType=BIGINT},
+      </if>
+      <if test="replyTime != null" >
+        reply_time = #{replyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.superstar.model.shop.GoodsComment" >
+    update sho_goods_comment
+    set goods_detail_id = #{goodsDetailId,jdbcType=BIGINT},
+      attributes_values_content = #{attributesValuesContent,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=BIGINT},
+      comment = #{comment,jdbcType=VARCHAR},
+      comment_pictures = #{commentPictures,jdbcType=VARCHAR},
+      reply = #{reply,jdbcType=VARCHAR},
+      reply_pictures = #{replyPictures,jdbcType=VARCHAR},
+      reply_user = #{replyUser,jdbcType=BIGINT},
+      reply_time = #{replyTime,jdbcType=TIMESTAMP},
+      score = #{score,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

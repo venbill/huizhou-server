@@ -10,7 +10,7 @@ import javax.validation.constraints.PositiveOrZero;
  */
 public class PageVm {
     @PositiveOrZero
-    private int pageNum;
+    private int pageNo;
 
     @PositiveOrZero
     private int pageSize;
@@ -18,17 +18,17 @@ public class PageVm {
     public PageVm() {
     }
 
-    public PageVm(@PositiveOrZero int pageNum, @PositiveOrZero int pageSize) {
-        this.pageNum = pageNum;
+    public PageVm(@PositiveOrZero int pageNo, @PositiveOrZero int pageSize) {
+        this.pageNo = pageNo;
         this.pageSize = pageSize;
     }
 
-    public int getPageNum() {
-        return pageNum;
+    public int getPageNo() {
+        return pageNo;
     }
 
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
+    public void setPageNo(int pageNum) {
+        this.pageNo = pageNum;
     }
 
     public int getPageSize() {

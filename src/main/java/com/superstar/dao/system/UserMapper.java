@@ -31,6 +31,7 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
+
     User findOneWithRolesByLogin(@Param("loginName") String loginName);
 
     User findOneWithRolesByUserId(@Param("userId") long userId);
