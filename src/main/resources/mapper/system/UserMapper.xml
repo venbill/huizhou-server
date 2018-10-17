@@ -23,6 +23,13 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+
+    <collection property="roles" ofType="com.superstar.model.system.Role">
+      <result column="role_id" property="roleId"/>
+      <result column="role_name" property="roleName"/>
+      <result column="role_cname" property="roleCname"/>
+    </collection>
+
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -135,7 +142,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.superstar.model.system.User" >
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="userId" parameterType="com.superstar.model.system.User" >
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >

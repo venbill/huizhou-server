@@ -18,6 +18,10 @@ public interface GoodsService {
      */
     RtData searchGoods(SearchVm searchVm);
 
-
+    /**
+     * 获取商品详情
+     * @param goodsId
+     * @return
+     */
     RtData getGoodsDetail(long goodsId);
 }

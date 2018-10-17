@@ -294,63 +294,63 @@ public class GoodsAttributeValueExample {
             return (Criteria) this;
         }
 
-        public Criteria andOrderIsNull() {
-            addCriterion("order is null");
+        public Criteria andPositionIsNull() {
+            addCriterion("position is null");
             return (Criteria) this;
         }
 
-        public Criteria andOrderIsNotNull() {
-            addCriterion("order is not null");
+        public Criteria andPositionIsNotNull() {
+            addCriterion("position is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOrderEqualTo(Integer value) {
-            addCriterion("order =", value, "order");
+        public Criteria andPositionEqualTo(Integer value) {
+            addCriterion("position =", value, "position");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNotEqualTo(Integer value) {
-            addCriterion("order <>", value, "order");
+        public Criteria andPositionNotEqualTo(Integer value) {
+            addCriterion("position <>", value, "position");
             return (Criteria) this;
         }
 
-        public Criteria andOrderGreaterThan(Integer value) {
-            addCriterion("order >", value, "order");
+        public Criteria andPositionGreaterThan(Integer value) {
+            addCriterion("position >", value, "position");
             return (Criteria) this;
         }
 
-        public Criteria andOrderGreaterThanOrEqualTo(Integer value) {
-            addCriterion("order >=", value, "order");
+        public Criteria andPositionGreaterThanOrEqualTo(Integer value) {
+            addCriterion("position >=", value, "position");
             return (Criteria) this;
         }
 
-        public Criteria andOrderLessThan(Integer value) {
-            addCriterion("order <", value, "order");
+        public Criteria andPositionLessThan(Integer value) {
+            addCriterion("position <", value, "position");
             return (Criteria) this;
         }
 
-        public Criteria andOrderLessThanOrEqualTo(Integer value) {
-            addCriterion("order <=", value, "order");
+        public Criteria andPositionLessThanOrEqualTo(Integer value) {
+            addCriterion("position <=", value, "position");
             return (Criteria) this;
         }
 
-        public Criteria andOrderIn(List<Integer> values) {
-            addCriterion("order in", values, "order");
+        public Criteria andPositionIn(List<Integer> values) {
+            addCriterion("position in", values, "position");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNotIn(List<Integer> values) {
-            addCriterion("order not in", values, "order");
+        public Criteria andPositionNotIn(List<Integer> values) {
+            addCriterion("position not in", values, "position");
             return (Criteria) this;
         }
 
-        public Criteria andOrderBetween(Integer value1, Integer value2) {
-            addCriterion("order between", value1, value2, "order");
+        public Criteria andPositionBetween(Integer value1, Integer value2) {
+            addCriterion("position between", value1, value2, "position");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNotBetween(Integer value1, Integer value2) {
-            addCriterion("order not between", value1, value2, "order");
+        public Criteria andPositionNotBetween(Integer value1, Integer value2) {
+            addCriterion("position not between", value1, value2, "position");
             return (Criteria) this;
         }
 

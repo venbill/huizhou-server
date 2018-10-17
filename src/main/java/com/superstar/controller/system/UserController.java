@@ -3,18 +3,24 @@ package com.superstar.controller.system;
 import com.superstar.dao.system.UserMapper;
 import com.superstar.model.common.RtData;
 import com.superstar.model.system.vm.LoginVM;
+import com.superstar.model.system.vm.RegisterVm;
+import com.superstar.model.system.vm.UpdatePasswordVm;
 import com.superstar.security.SecurityUtils;
 import com.superstar.service.system.AccountService;
+import com.superstar.service.system.ShortMsgService;
 import com.superstar.util.ResponseBuilder;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.management.relation.RoleStatus;
 import javax.validation.Valid;
 
 /**
@@ -32,6 +38,9 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private ShortMsgService shortMsgService;
+
 
 
 
@@ -48,6 +57,59 @@ public class UserController {
     public RtData getCurrentUser(){
         return accountService.getCurrentUser();
     }
+
+
+    @ApiOperation("获取短信验证码")
+    @PermitAll
+    @GetMapping("/getCodeMsg/{phone}")
+    public RtData getCodeMsg(@PathVariable String phone){
+        return shortMsgService.sendCodeMsg(phone);
+    }
+
+
+
+
+
+    @ApiOperation("注册")
+    @PermitAll
+    @PostMapping("/register")
+    public RtData register(RegisterVm registerVm){
+        try {
+
+           return accountService.register(registerVm);
+        }catch (Exception e){
+            return ResponseBuilder.fail("注册失败");
+        }
+    }
+
+
+    @ApiOperation("修改密码")
+//    @RolesAllowed({"ROLE_ADMIN","ROLE_CUSTOMER","ROLE_SHOPKEEPER","ROLE_SERVICE"})
+    @PermitAll
+    @PostMapping("/updatePassword")
+    public RtData updatePassword(@RequestBody UpdatePasswordVm updatePasswordVm){
+        return accountService.updatePassword(updatePasswordVm);
+    }
+
+
+
+
+    @ApiOperation("重置密码")
+    @PermitAll
+    @PostMapping("/restPassword")
+    public RtData restPassword(@RequestBody RegisterVm registerVm){
+        return accountService.resetPassword(registerVm);
+    }
+
+
+
+
+
+
+
+
+
+
 
 
     @PermitAll

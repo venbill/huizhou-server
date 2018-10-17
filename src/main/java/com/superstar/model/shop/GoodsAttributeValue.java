@@ -7,7 +7,7 @@ public class GoodsAttributeValue {
 
     private String value;
 
-    private Integer order;
+    private Integer position;
 
     private Boolean isDefaultSelect;
 
@@ -37,12 +37,12 @@ public class GoodsAttributeValue {
         this.value = value == null ? null : value.trim();
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getPosition() {
+        return position;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setPosition(Integer position) {
+        this.position = position;
     }
 
     public Boolean getIsDefaultSelect() {

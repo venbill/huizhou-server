@@ -7,6 +7,7 @@ import com.superstar.util.ResponseBuilder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +30,7 @@ public class GoodsCommentController {
 
     @ApiOperation("分页查询商品评论")
     @PermitAll
-    @PostMapping("/getPage")
+    @GetMapping("/getPage")
     public RtData getPageComments(GoodsCommentsSearchVm searchVm){
 
         return ResponseBuilder.success(goodsCommentService.getGoodsComments(searchVm.getGoodsId(),searchVm.getPageNo(),searchVm.getPageSize()));

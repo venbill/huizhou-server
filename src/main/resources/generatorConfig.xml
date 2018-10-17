@@ -56,14 +56,18 @@
          <!--</table>-->
          <!--<table tableName="sho_goods_attribute_key" domainObjectName="GoodsAttributeKey" enableCountByExample="false">-->
          <!--</table>-->
-         <!--<table tableName="sho_goods_attribute_value" domainObjectName="GoodsAttributeValue" enableCountByExample="false">-->
-         <!--</table>-->
+         <table tableName="sho_goods_attribute_value" domainObjectName="GoodsAttributeValue" enableCountByExample="false">
+         </table>
          <!--<table tableName="sho_goods_price" domainObjectName="GoodsPrice" enableCountByExample="false">-->
          <!--</table>-->
          <!--<table tableName="sho_goods_tag" domainObjectName="GoodsTag" enableCountByExample="false">-->
          <!--</table>-->
-         <table tableName="sho_goods_comment" domainObjectName="GoodsComment" enableCountByExample="false">
-         </table>
+         <!--<table tableName="sho_goods_comment" domainObjectName="GoodsComment" enableCountByExample="false">-->
+         <!--</table>-->
+         <!--<table tableName="sho_hot_search" domainObjectName="HotSearch" enableCountByExample="false">-->
+         <!--</table>-->
+         <!--<table tableName="sys_user_role" domainObjectName="UserRole" enableCountByExample="false">-->
+         <!--</table>-->
 
 
 

@@ -28,7 +28,7 @@ public class GoodsController {
     @ApiOperation("搜索")
     @PermitAll
     @GetMapping("/search")
-    public RtData searchGoods(@RequestBody SearchVm searchVm) {
+    public RtData searchGoods( SearchVm searchVm) {
         return goodsService.searchGoods(searchVm);
     }
 

@@ -27,7 +27,7 @@ public class BannerController {
 
     @ApiOperation("根据类型查询可用的轮播图列表")
     @PermitAll
-    @PostMapping("/banner/{type}")
+    @GetMapping("/banner/{type}")
     public RtData getBannerList(@PathVariable int type){
 
         return ResponseBuilder.success(bannerService.getEnableBannerList(type));

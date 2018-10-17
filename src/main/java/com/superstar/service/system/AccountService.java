@@ -1,6 +1,8 @@
 package com.superstar.service.system;
 
 import com.superstar.model.common.RtData;
+import com.superstar.model.system.vm.RegisterVm;
+import com.superstar.model.system.vm.UpdatePasswordVm;
 import org.springframework.security.authentication.AuthenticationManager;
 
 /**
@@ -24,4 +26,27 @@ public interface AccountService {
      * @return
      */
     RtData getCurrentUser();
+
+    /**
+     * 手机号注册
+     * @param registerVm
+     * @return
+     */
+    RtData register(RegisterVm registerVm);
+
+    /**
+     * 修改密码
+     * @param updatePasswordVm
+     * @return
+     */
+    RtData updatePassword(UpdatePasswordVm updatePasswordVm);
+
+
+    /**
+     * 重设密码
+     * @param registerVm
+     * @return
+     */
+    RtData resetPassword(RegisterVm registerVm);
+
 }
