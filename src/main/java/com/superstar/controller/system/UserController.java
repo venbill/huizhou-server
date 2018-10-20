@@ -73,7 +73,7 @@ public class UserController {
     @ApiOperation("注册")
     @PermitAll
     @PostMapping("/register")
-    public RtData register(RegisterVm registerVm){
+    public RtData register(@RequestBody RegisterVm registerVm){
         try {
 
            return accountService.register(registerVm);

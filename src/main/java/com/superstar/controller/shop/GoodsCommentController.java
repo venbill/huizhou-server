@@ -33,7 +33,7 @@ public class GoodsCommentController {
     @GetMapping("/getPage")
     public RtData getPageComments(GoodsCommentsSearchVm searchVm){
 
-        return ResponseBuilder.success(goodsCommentService.getGoodsComments(searchVm.getGoodsId(),searchVm.getPageNo(),searchVm.getPageSize()));
+        return ResponseBuilder.success(goodsCommentService.getGoodsComments(searchVm.getGoodsId(),searchVm.getCommentType(),searchVm.getPageNo(),searchVm.getPageSize()));
     }
 
 }

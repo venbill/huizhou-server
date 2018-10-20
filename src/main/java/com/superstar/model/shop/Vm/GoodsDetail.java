@@ -32,6 +32,12 @@ public class GoodsDetail {
     private int storeNo;
 
     private int saleNo;
+    
+    private Double minPrice;
+    
+    private Double maxPrice;
+    
+    private Double price;
 
 
     private List<GoodsAttribute> goodsAttributeList;
@@ -156,8 +162,28 @@ public class GoodsDetail {
     }
 
 
+    public Double getMinPrice() {
+        return minPrice;
+    }
 
+    public void setMinPrice(Double minPrice) {
+        this.minPrice = minPrice;
+    }
 
+    public Double getMaxPrice() {
+        return maxPrice;
+    }
 
+    public void setMaxPrice(Double maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 }
 

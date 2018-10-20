@@ -8,11 +8,43 @@ import com.superstar.model.common.PageVm;
  * @Date: Created in 下午5:08 2018/10/13.
  */
 public class SearchVm extends PageVm{
+    /**
+     * 关键词
+     */
     String content;
+    /**
+     * 活动id
+     */
     int activityId;
+    /**
+     * 大分类
+     */
     int bigTypeId;
+    /**
+     * 小分类
+     */
     int smallTypeId;
+    /**
+     * 店铺类型
+     */
+    int shopType;
+    /**
+     * 商品标记
+     */
     int tagId;
+    /**
+     * 最低价
+     */
+    double minPrice;
+    /**
+     * 最高价格
+     */
+    double maxPrice;
+
+    /**
+     * 店铺id
+     */
+    int shopId;
 
     public String getContent() {
         return content;
@@ -52,5 +84,39 @@ public class SearchVm extends PageVm{
 
     public void setTagId(int tagId) {
         this.tagId = tagId;
+    }
+
+
+    public int getShopType() {
+        return shopType;
+    }
+
+    public void setShopType(int shopType) {
+        this.shopType = shopType;
+    }
+
+    public double getMinPrice() {
+        return minPrice;
+    }
+
+    public void setMinPrice(double minPrice) {
+        this.minPrice = minPrice;
+    }
+
+    public double getMaxPrice() {
+        return maxPrice;
+    }
+
+    public void setMaxPrice(double maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+
+    public int getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(int shopId) {
+        this.shopId = shopId;
     }
 }

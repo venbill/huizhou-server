@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.superstar.dao.homestay.HomestayMapper" >
+  <resultMap id="BaseResultMap" type="com.superstar.model.homestay.Homestay" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="whole_house" property="wholeHouse" jdbcType="BIT" />
+    <result column="room_num" property="roomNum" jdbcType="INTEGER" />
+    <result column="bed_num" property="bedNum" jdbcType="INTEGER" />
+    <result column="toilet_num" property="toiletNum" jdbcType="INTEGER" />
+    <result column="max_person_num" property="maxPersonNum" jdbcType="INTEGER" />
+    <result column="sale_num" property="saleNum" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="county" property="county" jdbcType="INTEGER" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="county_name" property="countyName" jdbcType="VARCHAR" />
+    <result column="deail_address" property="deailAddress" jdbcType="INTEGER" />
+    <result column="location_x" property="locationX" jdbcType="DOUBLE" />
+    <result column="location_y" property="locationY" jdbcType="DOUBLE" />
+    <result column="configurations" property="configurations" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="DOUBLE" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="store_num" property="storeNum" jdbcType="INTEGER" />
+    <result column="recommend" property="recommend" jdbcType="BIT" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="picture_1" property="picture1" jdbcType="VARCHAR" />
+    <result column="picture_2" property="picture2" jdbcType="VARCHAR" />
+    <result column="picture_3" property="picture3" jdbcType="VARCHAR" />
+    <result column="picture_4" property="picture4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, description, whole_house, room_num, bed_num, toilet_num, max_person_num, 
+    sale_num, province, city, county, province_name, city_name, county_name, deail_address, 
+    location_x, location_y, configurations, score, price, area_id, store_num, recommend, 
+    picture, picture_1, picture_2, picture_3, picture_4
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.superstar.model.homestay.HomestayExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hom_homestay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from hom_homestay
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from hom_homestay
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.superstar.model.homestay.HomestayExample" >
+    delete from hom_homestay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.superstar.model.homestay.Homestay" >
+    insert into hom_homestay (id, name, description, 
+      whole_house, room_num, bed_num, 
+      toilet_num, max_person_num, sale_num, 
+      province, city, county, 
+      province_name, city_name, county_name, 
+      deail_address, location_x, location_y, 
+      configurations, score, price, 
+      area_id, store_num, recommend, 
+      picture, picture_1, picture_2, 
+      picture_3, picture_4)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{wholeHouse,jdbcType=BIT}, #{roomNum,jdbcType=INTEGER}, #{bedNum,jdbcType=INTEGER}, 
+      #{toiletNum,jdbcType=INTEGER}, #{maxPersonNum,jdbcType=INTEGER}, #{saleNum,jdbcType=INTEGER}, 
+      #{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, #{county,jdbcType=INTEGER}, 
+      #{provinceName,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, #{countyName,jdbcType=VARCHAR}, 
+      #{deailAddress,jdbcType=INTEGER}, #{locationX,jdbcType=DOUBLE}, #{locationY,jdbcType=DOUBLE}, 
+      #{configurations,jdbcType=VARCHAR}, #{score,jdbcType=DOUBLE}, #{price,jdbcType=DOUBLE}, 
+      #{areaId,jdbcType=INTEGER}, #{storeNum,jdbcType=INTEGER}, #{recommend,jdbcType=BIT}, 
+      #{picture,jdbcType=VARCHAR}, #{picture1,jdbcType=VARCHAR}, #{picture2,jdbcType=VARCHAR}, 
+      #{picture3,jdbcType=VARCHAR}, #{picture4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.superstar.model.homestay.Homestay" >
+    insert into hom_homestay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="wholeHouse != null" >
+        whole_house,
+      </if>
+      <if test="roomNum != null" >
+        room_num,
+      </if>
+      <if test="bedNum != null" >
+        bed_num,
+      </if>
+      <if test="toiletNum != null" >
+        toilet_num,
+      </if>
+      <if test="maxPersonNum != null" >
+        max_person_num,
+      </if>
+      <if test="saleNum != null" >
+        sale_num,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="countyName != null" >
+        county_name,
+      </if>
+      <if test="deailAddress != null" >
+        deail_address,
+      </if>
+      <if test="locationX != null" >
+        location_x,
+      </if>
+      <if test="locationY != null" >
+        location_y,
+      </if>
+      <if test="configurations != null" >
+        configurations,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="storeNum != null" >
+        store_num,
+      </if>
+      <if test="recommend != null" >
+        recommend,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="picture1 != null" >
+        picture_1,
+      </if>
+      <if test="picture2 != null" >
+        picture_2,
+      </if>
+      <if test="picture3 != null" >
+        picture_3,
+      </if>
+      <if test="picture4 != null" >
+        picture_4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="wholeHouse != null" >
+        #{wholeHouse,jdbcType=BIT},
+      </if>
+      <if test="roomNum != null" >
+        #{roomNum,jdbcType=INTEGER},
+      </if>
+      <if test="bedNum != null" >
+        #{bedNum,jdbcType=INTEGER},
+      </if>
+      <if test="toiletNum != null" >
+        #{toiletNum,jdbcType=INTEGER},
+      </if>
+      <if test="maxPersonNum != null" >
+        #{maxPersonNum,jdbcType=INTEGER},
+      </if>
+      <if test="saleNum != null" >
+        #{saleNum,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null" >
+        #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="deailAddress != null" >
+        #{deailAddress,jdbcType=INTEGER},
+      </if>
+      <if test="locationX != null" >
+        #{locationX,jdbcType=DOUBLE},
+      </if>
+      <if test="locationY != null" >
+        #{locationY,jdbcType=DOUBLE},
+      </if>
+      <if test="configurations != null" >
+        #{configurations,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="storeNum != null" >
+        #{storeNum,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null" >
+        #{recommend,jdbcType=BIT},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="picture1 != null" >
+        #{picture1,jdbcType=VARCHAR},
+      </if>
+      <if test="picture2 != null" >
+        #{picture2,jdbcType=VARCHAR},
+      </if>
+      <if test="picture3 != null" >
+        #{picture3,jdbcType=VARCHAR},
+      </if>
+      <if test="picture4 != null" >
+        #{picture4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hom_homestay
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wholeHouse != null" >
+        whole_house = #{record.wholeHouse,jdbcType=BIT},
+      </if>
+      <if test="record.roomNum != null" >
+        room_num = #{record.roomNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.bedNum != null" >
+        bed_num = #{record.bedNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.toiletNum != null" >
+        toilet_num = #{record.toiletNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxPersonNum != null" >
+        max_person_num = #{record.maxPersonNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.saleNum != null" >
+        sale_num = #{record.saleNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=INTEGER},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=INTEGER},
+      </if>
+      <if test="record.county != null" >
+        county = #{record.county,jdbcType=INTEGER},
+      </if>
+      <if test="record.provinceName != null" >
+        province_name = #{record.provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityName != null" >
+        city_name = #{record.cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countyName != null" >
+        county_name = #{record.countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deailAddress != null" >
+        deail_address = #{record.deailAddress,jdbcType=INTEGER},
+      </if>
+      <if test="record.locationX != null" >
+        location_x = #{record.locationX,jdbcType=DOUBLE},
+      </if>
+      <if test="record.locationY != null" >
+        location_y = #{record.locationY,jdbcType=DOUBLE},
+      </if>
+      <if test="record.configurations != null" >
+        configurations = #{record.configurations,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=DOUBLE},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DOUBLE},
+      </if>
+      <if test="record.areaId != null" >
+        area_id = #{record.areaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeNum != null" >
+        store_num = #{record.storeNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.recommend != null" >
+        recommend = #{record.recommend,jdbcType=BIT},
+      </if>
+      <if test="record.picture != null" >
+        picture = #{record.picture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picture1 != null" >
+        picture_1 = #{record.picture1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picture2 != null" >
+        picture_2 = #{record.picture2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picture3 != null" >
+        picture_3 = #{record.picture3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picture4 != null" >
+        picture_4 = #{record.picture4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hom_homestay
+    set id = #{record.id,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      whole_house = #{record.wholeHouse,jdbcType=BIT},
+      room_num = #{record.roomNum,jdbcType=INTEGER},
+      bed_num = #{record.bedNum,jdbcType=INTEGER},
+      toilet_num = #{record.toiletNum,jdbcType=INTEGER},
+      max_person_num = #{record.maxPersonNum,jdbcType=INTEGER},
+      sale_num = #{record.saleNum,jdbcType=INTEGER},
+      province = #{record.province,jdbcType=INTEGER},
+      city = #{record.city,jdbcType=INTEGER},
+      county = #{record.county,jdbcType=INTEGER},
+      province_name = #{record.provinceName,jdbcType=VARCHAR},
+      city_name = #{record.cityName,jdbcType=VARCHAR},
+      county_name = #{record.countyName,jdbcType=VARCHAR},
+      deail_address = #{record.deailAddress,jdbcType=INTEGER},
+      location_x = #{record.locationX,jdbcType=DOUBLE},
+      location_y = #{record.locationY,jdbcType=DOUBLE},
+      configurations = #{record.configurations,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=DOUBLE},
+      price = #{record.price,jdbcType=DOUBLE},
+      area_id = #{record.areaId,jdbcType=INTEGER},
+      store_num = #{record.storeNum,jdbcType=INTEGER},
+      recommend = #{record.recommend,jdbcType=BIT},
+      picture = #{record.picture,jdbcType=VARCHAR},
+      picture_1 = #{record.picture1,jdbcType=VARCHAR},
+      picture_2 = #{record.picture2,jdbcType=VARCHAR},
+      picture_3 = #{record.picture3,jdbcType=VARCHAR},
+      picture_4 = #{record.picture4,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.superstar.model.homestay.Homestay" >
+    update hom_homestay
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="wholeHouse != null" >
+        whole_house = #{wholeHouse,jdbcType=BIT},
+      </if>
+      <if test="roomNum != null" >
+        room_num = #{roomNum,jdbcType=INTEGER},
+      </if>
+      <if test="bedNum != null" >
+        bed_num = #{bedNum,jdbcType=INTEGER},
+      </if>
+      <if test="toiletNum != null" >
+        toilet_num = #{toiletNum,jdbcType=INTEGER},
+      </if>
+      <if test="maxPersonNum != null" >
+        max_person_num = #{maxPersonNum,jdbcType=INTEGER},
+      </if>
+      <if test="saleNum != null" >
+        sale_num = #{saleNum,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null" >
+        county_name = #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="deailAddress != null" >
+        deail_address = #{deailAddress,jdbcType=INTEGER},
+      </if>
+      <if test="locationX != null" >
+        location_x = #{locationX,jdbcType=DOUBLE},
+      </if>
+      <if test="locationY != null" >
+        location_y = #{locationY,jdbcType=DOUBLE},
+      </if>
+      <if test="configurations != null" >
+        configurations = #{configurations,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="storeNum != null" >
+        store_num = #{storeNum,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null" >
+        recommend = #{recommend,jdbcType=BIT},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="picture1 != null" >
+        picture_1 = #{picture1,jdbcType=VARCHAR},
+      </if>
+      <if test="picture2 != null" >
+        picture_2 = #{picture2,jdbcType=VARCHAR},
+      </if>
+      <if test="picture3 != null" >
+        picture_3 = #{picture3,jdbcType=VARCHAR},
+      </if>
+      <if test="picture4 != null" >
+        picture_4 = #{picture4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.superstar.model.homestay.Homestay" >
+    update hom_homestay
+    set name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      whole_house = #{wholeHouse,jdbcType=BIT},
+      room_num = #{roomNum,jdbcType=INTEGER},
+      bed_num = #{bedNum,jdbcType=INTEGER},
+      toilet_num = #{toiletNum,jdbcType=INTEGER},
+      max_person_num = #{maxPersonNum,jdbcType=INTEGER},
+      sale_num = #{saleNum,jdbcType=INTEGER},
+      province = #{province,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      county = #{county,jdbcType=INTEGER},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      county_name = #{countyName,jdbcType=VARCHAR},
+      deail_address = #{deailAddress,jdbcType=INTEGER},
+      location_x = #{locationX,jdbcType=DOUBLE},
+      location_y = #{locationY,jdbcType=DOUBLE},
+      configurations = #{configurations,jdbcType=VARCHAR},
+      score = #{score,jdbcType=DOUBLE},
+      price = #{price,jdbcType=DOUBLE},
+      area_id = #{areaId,jdbcType=INTEGER},
+      store_num = #{storeNum,jdbcType=INTEGER},
+      recommend = #{recommend,jdbcType=BIT},
+      picture = #{picture,jdbcType=VARCHAR},
+      picture_1 = #{picture1,jdbcType=VARCHAR},
+      picture_2 = #{picture2,jdbcType=VARCHAR},
+      picture_3 = #{picture3,jdbcType=VARCHAR},
+      picture_4 = #{picture4,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

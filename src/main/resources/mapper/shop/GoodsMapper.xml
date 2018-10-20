@@ -14,12 +14,12 @@
     <result column="picture2" property="picture2" jdbcType="VARCHAR" />
     <result column="picture3" property="picture3" jdbcType="VARCHAR" />
     <result column="picture4" property="picture4" jdbcType="VARCHAR" />
-    <result column="price_min" property="priceMin" jdbcType="DECIMAL" />
-    <result column="price_max" property="priceMax" jdbcType="DECIMAL" />
-    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="price_min" property="priceMin" jdbcType="DOUBLE" />
+    <result column="price_max" property="priceMax" jdbcType="DOUBLE" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
     <result column="have_express" property="haveExpress" jdbcType="BIT" />
     <result column="express_free" property="expressFree" jdbcType="BIT" />
-    <result column="express_money" property="expressMoney" jdbcType="DECIMAL" />
+    <result column="express_money" property="expressMoney" jdbcType="DOUBLE" />
     <result column="select_attribute" property="selectAttribute" jdbcType="BIT" />
     <result column="store_no" property="storeNo" jdbcType="INTEGER" />
     <result column="sale_no" property="saleNo" jdbcType="INTEGER" />
@@ -158,8 +158,8 @@
       #{bigType,jdbcType=INTEGER}, #{smallType,jdbcType=INTEGER}, #{shopType,jdbcType=INTEGER}, 
       #{shopId,jdbcType=INTEGER}, #{picture,jdbcType=VARCHAR}, #{picture1,jdbcType=VARCHAR}, 
       #{picture2,jdbcType=VARCHAR}, #{picture3,jdbcType=VARCHAR}, #{picture4,jdbcType=VARCHAR}, 
-      #{priceMin,jdbcType=DECIMAL}, #{priceMax,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, 
-      #{haveExpress,jdbcType=BIT}, #{expressFree,jdbcType=BIT}, #{expressMoney,jdbcType=DECIMAL}, 
+      #{priceMin,jdbcType=DOUBLE}, #{priceMax,jdbcType=DOUBLE}, #{price,jdbcType=DOUBLE}, 
+      #{haveExpress,jdbcType=BIT}, #{expressFree,jdbcType=BIT}, #{expressMoney,jdbcType=DOUBLE}, 
       #{selectAttribute,jdbcType=BIT}, #{storeNo,jdbcType=INTEGER}, #{saleNo,jdbcType=INTEGER}, 
       #{tags,jdbcType=VARCHAR}, #{commentNo,jdbcType=BIGINT}, #{averageScore,jdbcType=DOUBLE}, 
       #{detailPictures,jdbcType=LONGVARCHAR})
@@ -281,13 +281,13 @@
         #{picture4,jdbcType=VARCHAR},
       </if>
       <if test="priceMin != null" >
-        #{priceMin,jdbcType=DECIMAL},
+        #{priceMin,jdbcType=DOUBLE},
       </if>
       <if test="priceMax != null" >
-        #{priceMax,jdbcType=DECIMAL},
+        #{priceMax,jdbcType=DOUBLE},
       </if>
       <if test="price != null" >
-        #{price,jdbcType=DECIMAL},
+        #{price,jdbcType=DOUBLE},
       </if>
       <if test="haveExpress != null" >
         #{haveExpress,jdbcType=BIT},
@@ -296,7 +296,7 @@
         #{expressFree,jdbcType=BIT},
       </if>
       <if test="expressMoney != null" >
-        #{expressMoney,jdbcType=DECIMAL},
+        #{expressMoney,jdbcType=DOUBLE},
       </if>
       <if test="selectAttribute != null" >
         #{selectAttribute,jdbcType=BIT},
@@ -361,13 +361,13 @@
         picture4 = #{record.picture4,jdbcType=VARCHAR},
       </if>
       <if test="record.priceMin != null" >
-        price_min = #{record.priceMin,jdbcType=DECIMAL},
+        price_min = #{record.priceMin,jdbcType=DOUBLE},
       </if>
       <if test="record.priceMax != null" >
-        price_max = #{record.priceMax,jdbcType=DECIMAL},
+        price_max = #{record.priceMax,jdbcType=DOUBLE},
       </if>
       <if test="record.price != null" >
-        price = #{record.price,jdbcType=DECIMAL},
+        price = #{record.price,jdbcType=DOUBLE},
       </if>
       <if test="record.haveExpress != null" >
         have_express = #{record.haveExpress,jdbcType=BIT},
@@ -376,7 +376,7 @@
         express_free = #{record.expressFree,jdbcType=BIT},
       </if>
       <if test="record.expressMoney != null" >
-        express_money = #{record.expressMoney,jdbcType=DECIMAL},
+        express_money = #{record.expressMoney,jdbcType=DOUBLE},
       </if>
       <if test="record.selectAttribute != null" >
         select_attribute = #{record.selectAttribute,jdbcType=BIT},
@@ -418,12 +418,12 @@
       picture2 = #{record.picture2,jdbcType=VARCHAR},
       picture3 = #{record.picture3,jdbcType=VARCHAR},
       picture4 = #{record.picture4,jdbcType=VARCHAR},
-      price_min = #{record.priceMin,jdbcType=DECIMAL},
-      price_max = #{record.priceMax,jdbcType=DECIMAL},
-      price = #{record.price,jdbcType=DECIMAL},
+      price_min = #{record.priceMin,jdbcType=DOUBLE},
+      price_max = #{record.priceMax,jdbcType=DOUBLE},
+      price = #{record.price,jdbcType=DOUBLE},
       have_express = #{record.haveExpress,jdbcType=BIT},
       express_free = #{record.expressFree,jdbcType=BIT},
-      express_money = #{record.expressMoney,jdbcType=DECIMAL},
+      express_money = #{record.expressMoney,jdbcType=DOUBLE},
       select_attribute = #{record.selectAttribute,jdbcType=BIT},
       store_no = #{record.storeNo,jdbcType=INTEGER},
       sale_no = #{record.saleNo,jdbcType=INTEGER},
@@ -449,12 +449,12 @@
       picture2 = #{record.picture2,jdbcType=VARCHAR},
       picture3 = #{record.picture3,jdbcType=VARCHAR},
       picture4 = #{record.picture4,jdbcType=VARCHAR},
-      price_min = #{record.priceMin,jdbcType=DECIMAL},
-      price_max = #{record.priceMax,jdbcType=DECIMAL},
-      price = #{record.price,jdbcType=DECIMAL},
+      price_min = #{record.priceMin,jdbcType=DOUBLE},
+      price_max = #{record.priceMax,jdbcType=DOUBLE},
+      price = #{record.price,jdbcType=DOUBLE},
       have_express = #{record.haveExpress,jdbcType=BIT},
       express_free = #{record.expressFree,jdbcType=BIT},
-      express_money = #{record.expressMoney,jdbcType=DECIMAL},
+      express_money = #{record.expressMoney,jdbcType=DOUBLE},
       select_attribute = #{record.selectAttribute,jdbcType=BIT},
       store_no = #{record.storeNo,jdbcType=INTEGER},
       sale_no = #{record.saleNo,jdbcType=INTEGER},
@@ -502,13 +502,13 @@
         picture4 = #{picture4,jdbcType=VARCHAR},
       </if>
       <if test="priceMin != null" >
-        price_min = #{priceMin,jdbcType=DECIMAL},
+        price_min = #{priceMin,jdbcType=DOUBLE},
       </if>
       <if test="priceMax != null" >
-        price_max = #{priceMax,jdbcType=DECIMAL},
+        price_max = #{priceMax,jdbcType=DOUBLE},
       </if>
       <if test="price != null" >
-        price = #{price,jdbcType=DECIMAL},
+        price = #{price,jdbcType=DOUBLE},
       </if>
       <if test="haveExpress != null" >
         have_express = #{haveExpress,jdbcType=BIT},
@@ -517,7 +517,7 @@
         express_free = #{expressFree,jdbcType=BIT},
       </if>
       <if test="expressMoney != null" >
-        express_money = #{expressMoney,jdbcType=DECIMAL},
+        express_money = #{expressMoney,jdbcType=DOUBLE},
       </if>
       <if test="selectAttribute != null" >
         select_attribute = #{selectAttribute,jdbcType=BIT},
@@ -556,12 +556,12 @@
       picture2 = #{picture2,jdbcType=VARCHAR},
       picture3 = #{picture3,jdbcType=VARCHAR},
       picture4 = #{picture4,jdbcType=VARCHAR},
-      price_min = #{priceMin,jdbcType=DECIMAL},
-      price_max = #{priceMax,jdbcType=DECIMAL},
-      price = #{price,jdbcType=DECIMAL},
+      price_min = #{priceMin,jdbcType=DOUBLE},
+      price_max = #{priceMax,jdbcType=DOUBLE},
+      price = #{price,jdbcType=DOUBLE},
       have_express = #{haveExpress,jdbcType=BIT},
       express_free = #{expressFree,jdbcType=BIT},
-      express_money = #{expressMoney,jdbcType=DECIMAL},
+      express_money = #{expressMoney,jdbcType=DOUBLE},
       select_attribute = #{selectAttribute,jdbcType=BIT},
       store_no = #{storeNo,jdbcType=INTEGER},
       sale_no = #{saleNo,jdbcType=INTEGER},
@@ -584,12 +584,12 @@
       picture2 = #{picture2,jdbcType=VARCHAR},
       picture3 = #{picture3,jdbcType=VARCHAR},
       picture4 = #{picture4,jdbcType=VARCHAR},
-      price_min = #{priceMin,jdbcType=DECIMAL},
-      price_max = #{priceMax,jdbcType=DECIMAL},
-      price = #{price,jdbcType=DECIMAL},
+      price_min = #{priceMin,jdbcType=DOUBLE},
+      price_max = #{priceMax,jdbcType=DOUBLE},
+      price = #{price,jdbcType=DOUBLE},
       have_express = #{haveExpress,jdbcType=BIT},
       express_free = #{expressFree,jdbcType=BIT},
-      express_money = #{expressMoney,jdbcType=DECIMAL},
+      express_money = #{expressMoney,jdbcType=DOUBLE},
       select_attribute = #{selectAttribute,jdbcType=BIT},
       store_no = #{storeNo,jdbcType=INTEGER},
       sale_no = #{saleNo,jdbcType=INTEGER},

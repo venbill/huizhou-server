@@ -23,14 +23,14 @@
         </jdbcConnection>
 
         <!--<javaModelGenerator targetPackage="com.superstar.model.system" targetProject="src/main/java">-->
-        <javaModelGenerator targetPackage="com.superstar.model.shop" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.superstar.model.homestay" targetProject="src/main/java">
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="mapper.shop" targetProject="src/main/resources"/>
+        <sqlMapGenerator targetPackage="mapper.homestay" targetProject="src/main/resources"/>
 
         <!--<javaClientGenerator type="XMLMAPPER" targetPackage="com.superstar.dao.system" targetProject="src/main/java"/>-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.superstar.dao.shop" targetProject="src/main/java"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.superstar.dao.homestay" targetProject="src/main/java"/>
 
 
          <!--<table tableName="sys_user" domainObjectName="User" enableCountByExample="false">-->
@@ -56,8 +56,8 @@
          <!--</table>-->
          <!--<table tableName="sho_goods_attribute_key" domainObjectName="GoodsAttributeKey" enableCountByExample="false">-->
          <!--</table>-->
-         <table tableName="sho_goods_attribute_value" domainObjectName="GoodsAttributeValue" enableCountByExample="false">
-         </table>
+         <!--<table tableName="sho_goods_attribute_value" domainObjectName="GoodsAttributeValue" enableCountByExample="false">-->
+         <!--</table>-->
          <!--<table tableName="sho_goods_price" domainObjectName="GoodsPrice" enableCountByExample="false">-->
          <!--</table>-->
          <!--<table tableName="sho_goods_tag" domainObjectName="GoodsTag" enableCountByExample="false">-->
@@ -68,6 +68,35 @@
          <!--</table>-->
          <!--<table tableName="sys_user_role" domainObjectName="UserRole" enableCountByExample="false">-->
          <!--</table>-->
+         <!--<table tableName="sho_shop_type" domainObjectName="ShopType" enableCountByExample="false">-->
+         <!--</table>-->
+
+
+
+
+         <!--<table tableName="buy_delivery_address" domainObjectName="DeliveryAddress" enableCountByExample="false">-->
+         <!--</table>-->
+
+         <!--<table tableName="sys_area" domainObjectName="SysArea" enableCountByExample="false">-->
+         <!--</table>-->
+         <!--<table tableName="buy_car" domainObjectName="BuyCar" enableCountByExample="false">-->
+         <!--</table>-->
+
+
+
+
+         <table tableName="hom_homestay" domainObjectName="Homestay" enableCountByExample="false">
+         </table>
+         <table tableName="hom_scenic spot" domainObjectName="ScenicSpot" enableCountByExample="false">
+         </table>
+         <table tableName="hom_homestay_configuration" domainObjectName="HomestayConfiguration" enableCountByExample="false">
+         </table>
+         <table tableName="hom_homestay_order" domainObjectName="HomestayOrder" enableCountByExample="false">
+         </table>
+
+
+
+
 
 
 

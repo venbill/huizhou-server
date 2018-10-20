@@ -5,7 +5,7 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
     <result column="attribute_value_ids" property="attributeValueIds" jdbcType="VARCHAR" />
-    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
     <result column="picture" property="picture" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -103,7 +103,7 @@
     insert into sho_goods_price (id, goods_id, attribute_value_ids, 
       price, picture)
     values (#{id,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{attributeValueIds,jdbcType=VARCHAR}, 
-      #{price,jdbcType=DECIMAL}, #{picture,jdbcType=INTEGER})
+      #{price,jdbcType=DOUBLE}, #{picture,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.superstar.model.shop.GoodsPrice" >
     insert into sho_goods_price
@@ -135,7 +135,7 @@
         #{attributeValueIds,jdbcType=VARCHAR},
       </if>
       <if test="price != null" >
-        #{price,jdbcType=DECIMAL},
+        #{price,jdbcType=DOUBLE},
       </if>
       <if test="picture != null" >
         #{picture,jdbcType=INTEGER},
@@ -155,7 +155,7 @@
         attribute_value_ids = #{record.attributeValueIds,jdbcType=VARCHAR},
       </if>
       <if test="record.price != null" >
-        price = #{record.price,jdbcType=DECIMAL},
+        price = #{record.price,jdbcType=DOUBLE},
       </if>
       <if test="record.picture != null" >
         picture = #{record.picture,jdbcType=INTEGER},
@@ -170,7 +170,7 @@
     set id = #{record.id,jdbcType=BIGINT},
       goods_id = #{record.goodsId,jdbcType=BIGINT},
       attribute_value_ids = #{record.attributeValueIds,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=DECIMAL},
+      price = #{record.price,jdbcType=DOUBLE},
       picture = #{record.picture,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -186,7 +186,7 @@
         attribute_value_ids = #{attributeValueIds,jdbcType=VARCHAR},
       </if>
       <if test="price != null" >
-        price = #{price,jdbcType=DECIMAL},
+        price = #{price,jdbcType=DOUBLE},
       </if>
       <if test="picture != null" >
         picture = #{picture,jdbcType=INTEGER},
@@ -198,7 +198,7 @@
     update sho_goods_price
     set goods_id = #{goodsId,jdbcType=BIGINT},
       attribute_value_ids = #{attributeValueIds,jdbcType=VARCHAR},
-      price = #{price,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DOUBLE},
       picture = #{picture,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>

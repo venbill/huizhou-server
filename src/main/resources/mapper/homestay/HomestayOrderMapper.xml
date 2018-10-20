@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.superstar.dao.homestay.HomestayOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.superstar.model.homestay.HomestayOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="homestay_id" property="homestayId" jdbcType="BIGINT" />
+    <result column="homestay_name" property="homestayName" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="sing_price" property="singPrice" jdbcType="DOUBLE" />
+    <result column="day_num" property="dayNum" jdbcType="DOUBLE" />
+    <result column="total_price" property="totalPrice" jdbcType="DOUBLE" />
+    <result column="pay_money" property="payMoney" jdbcType="DOUBLE" />
+    <result column="pay_type" property="payType" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="person_num" property="personNum" jdbcType="INTEGER" />
+    <result column="in_time" property="inTime" jdbcType="TIMESTAMP" />
+    <result column="out_time" property="outTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, homestay_id, homestay_name, user_id, sing_price, day_num, total_price, pay_money, 
+    pay_type, create_time, pay_time, person_num, in_time, out_time, status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.superstar.model.homestay.HomestayOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hom_homestay_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from hom_homestay_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from hom_homestay_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.superstar.model.homestay.HomestayOrderExample" >
+    delete from hom_homestay_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.superstar.model.homestay.HomestayOrder" >
+    insert into hom_homestay_order (id, homestay_id, homestay_name, 
+      user_id, sing_price, day_num, 
+      total_price, pay_money, pay_type, 
+      create_time, pay_time, person_num, 
+      in_time, out_time, status
+      )
+    values (#{id,jdbcType=BIGINT}, #{homestayId,jdbcType=BIGINT}, #{homestayName,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=BIGINT}, #{singPrice,jdbcType=DOUBLE}, #{dayNum,jdbcType=DOUBLE}, 
+      #{totalPrice,jdbcType=DOUBLE}, #{payMoney,jdbcType=DOUBLE}, #{payType,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, #{personNum,jdbcType=INTEGER}, 
+      #{inTime,jdbcType=TIMESTAMP}, #{outTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.superstar.model.homestay.HomestayOrder" >
+    insert into hom_homestay_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="homestayId != null" >
+        homestay_id,
+      </if>
+      <if test="homestayName != null" >
+        homestay_name,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="singPrice != null" >
+        sing_price,
+      </if>
+      <if test="dayNum != null" >
+        day_num,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="payMoney != null" >
+        pay_money,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="personNum != null" >
+        person_num,
+      </if>
+      <if test="inTime != null" >
+        in_time,
+      </if>
+      <if test="outTime != null" >
+        out_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="homestayId != null" >
+        #{homestayId,jdbcType=BIGINT},
+      </if>
+      <if test="homestayName != null" >
+        #{homestayName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="singPrice != null" >
+        #{singPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="dayNum != null" >
+        #{dayNum,jdbcType=DOUBLE},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="payMoney != null" >
+        #{payMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="personNum != null" >
+        #{personNum,jdbcType=INTEGER},
+      </if>
+      <if test="inTime != null" >
+        #{inTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outTime != null" >
+        #{outTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hom_homestay_order
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.homestayId != null" >
+        homestay_id = #{record.homestayId,jdbcType=BIGINT},
+      </if>
+      <if test="record.homestayName != null" >
+        homestay_name = #{record.homestayName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.singPrice != null" >
+        sing_price = #{record.singPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.dayNum != null" >
+        day_num = #{record.dayNum,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalPrice != null" >
+        total_price = #{record.totalPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.payMoney != null" >
+        pay_money = #{record.payMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.payType != null" >
+        pay_type = #{record.payType,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.payTime != null" >
+        pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.personNum != null" >
+        person_num = #{record.personNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.inTime != null" >
+        in_time = #{record.inTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.outTime != null" >
+        out_time = #{record.outTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hom_homestay_order
+    set id = #{record.id,jdbcType=BIGINT},
+      homestay_id = #{record.homestayId,jdbcType=BIGINT},
+      homestay_name = #{record.homestayName,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      sing_price = #{record.singPrice,jdbcType=DOUBLE},
+      day_num = #{record.dayNum,jdbcType=DOUBLE},
+      total_price = #{record.totalPrice,jdbcType=DOUBLE},
+      pay_money = #{record.payMoney,jdbcType=DOUBLE},
+      pay_type = #{record.payType,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+      person_num = #{record.personNum,jdbcType=INTEGER},
+      in_time = #{record.inTime,jdbcType=TIMESTAMP},
+      out_time = #{record.outTime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.superstar.model.homestay.HomestayOrder" >
+    update hom_homestay_order
+    <set >
+      <if test="homestayId != null" >
+        homestay_id = #{homestayId,jdbcType=BIGINT},
+      </if>
+      <if test="homestayName != null" >
+        homestay_name = #{homestayName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="singPrice != null" >
+        sing_price = #{singPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="dayNum != null" >
+        day_num = #{dayNum,jdbcType=DOUBLE},
+      </if>
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="payMoney != null" >
+        pay_money = #{payMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="personNum != null" >
+        person_num = #{personNum,jdbcType=INTEGER},
+      </if>
+      <if test="inTime != null" >
+        in_time = #{inTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outTime != null" >
+        out_time = #{outTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.superstar.model.homestay.HomestayOrder" >
+    update hom_homestay_order
+    set homestay_id = #{homestayId,jdbcType=BIGINT},
+      homestay_name = #{homestayName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      sing_price = #{singPrice,jdbcType=DOUBLE},
+      day_num = #{dayNum,jdbcType=DOUBLE},
+      total_price = #{totalPrice,jdbcType=DOUBLE},
+      pay_money = #{payMoney,jdbcType=DOUBLE},
+      pay_type = #{payType,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      person_num = #{personNum,jdbcType=INTEGER},
+      in_time = #{inTime,jdbcType=TIMESTAMP},
+      out_time = #{outTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

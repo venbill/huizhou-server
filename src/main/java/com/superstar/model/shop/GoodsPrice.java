@@ -1,6 +1,6 @@
 package com.superstar.model.shop;
 
-import java.math.BigDecimal;
+
 
 public class GoodsPrice {
     private Long id;
@@ -9,7 +9,7 @@ public class GoodsPrice {
 
     private String attributeValueIds;
 
-    private BigDecimal price;
+    private Double price;
 
     private Integer picture;
 
@@ -37,11 +37,11 @@ public class GoodsPrice {
         this.attributeValueIds = attributeValueIds == null ? null : attributeValueIds.trim();
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

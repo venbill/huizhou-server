@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.superstar.dao.buy.BuyCarMapper" >
+  <resultMap id="BaseResultMap" type="com.superstar.model.buy.BuyCar" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="goods_attributes_values" property="goodsAttributesValues" jdbcType="VARCHAR" />
+    <result column="add_price" property="addPrice" jdbcType="DOUBLE" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_no" property="addNo" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="attributes_values_content" property="attributesValuesContent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, goods_id, goods_attributes_values, add_price, add_time, add_no, user_id, goods_name, 
+    attributes_values_content
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.superstar.model.buy.BuyCarExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from buy_car
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from buy_car
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from buy_car
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.superstar.model.buy.BuyCarExample" >
+    delete from buy_car
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.superstar.model.buy.BuyCar" >
+    insert into buy_car (id, goods_id, goods_attributes_values, 
+      add_price, add_time, add_no, 
+      user_id, goods_name, attributes_values_content
+      )
+    values (#{id,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{goodsAttributesValues,jdbcType=VARCHAR}, 
+      #{addPrice,jdbcType=DOUBLE}, #{addTime,jdbcType=TIMESTAMP}, #{addNo,jdbcType=INTEGER}, 
+      #{userId,jdbcType=BIGINT}, #{goodsName,jdbcType=VARCHAR}, #{attributesValuesContent,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.superstar.model.buy.BuyCar" >
+    insert into buy_car
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsAttributesValues != null" >
+        goods_attributes_values,
+      </if>
+      <if test="addPrice != null" >
+        add_price,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addNo != null" >
+        add_no,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="attributesValuesContent != null" >
+        attributes_values_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsAttributesValues != null" >
+        #{goodsAttributesValues,jdbcType=VARCHAR},
+      </if>
+      <if test="addPrice != null" >
+        #{addPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addNo != null" >
+        #{addNo,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="attributesValuesContent != null" >
+        #{attributesValuesContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update buy_car
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsId != null" >
+        goods_id = #{record.goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsAttributesValues != null" >
+        goods_attributes_values = #{record.goodsAttributesValues,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addPrice != null" >
+        add_price = #{record.addPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.addNo != null" >
+        add_no = #{record.addNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsName != null" >
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attributesValuesContent != null" >
+        attributes_values_content = #{record.attributesValuesContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update buy_car
+    set id = #{record.id,jdbcType=BIGINT},
+      goods_id = #{record.goodsId,jdbcType=BIGINT},
+      goods_attributes_values = #{record.goodsAttributesValues,jdbcType=VARCHAR},
+      add_price = #{record.addPrice,jdbcType=DOUBLE},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      add_no = #{record.addNo,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      attributes_values_content = #{record.attributesValuesContent,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.superstar.model.buy.BuyCar" >
+    update buy_car
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsAttributesValues != null" >
+        goods_attributes_values = #{goodsAttributesValues,jdbcType=VARCHAR},
+      </if>
+      <if test="addPrice != null" >
+        add_price = #{addPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addNo != null" >
+        add_no = #{addNo,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="attributesValuesContent != null" >
+        attributes_values_content = #{attributesValuesContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.superstar.model.buy.BuyCar" >
+    update buy_car
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      goods_attributes_values = #{goodsAttributesValues,jdbcType=VARCHAR},
+      add_price = #{addPrice,jdbcType=DOUBLE},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_no = #{addNo,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=BIGINT},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      attributes_values_content = #{attributesValuesContent,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

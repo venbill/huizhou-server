@@ -1,6 +1,5 @@
 package com.superstar.model.shop;
 
-import java.math.BigDecimal;
 
 public class Goods {
     private Long id;
@@ -27,17 +26,17 @@ public class Goods {
 
     private String picture4;
 
-    private BigDecimal priceMin;
+    private Double priceMin;
 
-    private BigDecimal priceMax;
+    private Double priceMax;
 
-    private BigDecimal price;
+    private Double price;
 
     private Boolean haveExpress;
 
     private Boolean expressFree;
 
-    private BigDecimal expressMoney;
+    private Double expressMoney;
 
     private Boolean selectAttribute;
 
@@ -149,27 +148,27 @@ public class Goods {
         this.picture4 = picture4 == null ? null : picture4.trim();
     }
 
-    public BigDecimal getPriceMin() {
+    public Double getPriceMin() {
         return priceMin;
     }
 
-    public void setPriceMin(BigDecimal priceMin) {
+    public void setPriceMin(Double priceMin) {
         this.priceMin = priceMin;
     }
 
-    public BigDecimal getPriceMax() {
+    public Double getPriceMax() {
         return priceMax;
     }
 
-    public void setPriceMax(BigDecimal priceMax) {
+    public void setPriceMax(Double priceMax) {
         this.priceMax = priceMax;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -189,11 +188,11 @@ public class Goods {
         this.expressFree = expressFree;
     }
 
-    public BigDecimal getExpressMoney() {
+    public Double getExpressMoney() {
         return expressMoney;
     }
 
-    public void setExpressMoney(BigDecimal expressMoney) {
+    public void setExpressMoney(Double expressMoney) {
         this.expressMoney = expressMoney;
     }
 

@@ -90,6 +90,30 @@ public class GoodsServiceImpl implements GoodsService {
             goodsExample.getOredCriteria().get(0).andSmallTypeEqualTo(searchVm.getSmallTypeId());
         }
 
+
+        if(searchVm.getShopType()>0){
+            goodsExample.getOredCriteria().get(0).andShopTypeEqualTo(searchVm.getShopType());
+        }
+
+        if(searchVm.getMinPrice()>0){
+            goodsExample.getOredCriteria().get(0).andPriceMinGreaterThan(searchVm.getMinPrice());
+        }
+
+
+        if(searchVm.getMaxPrice()>0){
+            goodsExample.getOredCriteria().get(0).andPriceMinLessThan(searchVm.getMaxPrice());
+        }
+
+
+
+
+        if(searchVm.getShopId()>0){
+            goodsExample.getOredCriteria().get(0).andShopIdEqualTo(searchVm.getShopId());
+        }
+
+
+
+
         PageHelper.startPage(searchVm.getPageNo(), searchVm.getPageSize());
         Page<Goods> goods = (Page<Goods>) goodsMapper.selectByExample(goodsExample);
 
@@ -133,6 +157,12 @@ public class GoodsServiceImpl implements GoodsService {
         goodsDetail.setSaleNo(goods.getSaleNo());
         goodsDetail.setStoreNo(goods.getStoreNo());
         goodsDetail.setGoodsAttributeList(attributeService.getGoodsAttributeList(goodsId));
+
+        goodsDetail.setMinPrice(goods.getPriceMin());
+        goodsDetail.setMaxPrice(goods.getPriceMax());
+        goodsDetail.setPrice(goods.getPrice());
+
+
 
 
         if(goods.getSelectAttribute()){

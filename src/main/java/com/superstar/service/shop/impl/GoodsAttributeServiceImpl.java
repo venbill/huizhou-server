@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,5 +79,15 @@ public class GoodsAttributeServiceImpl implements GoodsAttributeService {
         goodsPriceExample.createCriteria().andGoodsIdEqualTo(goodsId);
         return goodsPriceMapper.selectByExample(goodsPriceExample);
 
+    }
+
+    @Override
+    public String getGoodsSelectAttributeValueContent(String goodSelectAttributesValues) {
+        String [] selectAttributeValueIdList = goodSelectAttributesValues.split(",");
+        StringBuffer content = new StringBuffer();
+        for (String idStr:selectAttributeValueIdList) {
+            content.append((StringUtils.isEmpty(content)?"":" ")+attributeValueMapper.selectByPrimaryKey(Long.decode(idStr)).getValue());
+        }
+        return content.toString();
     }
 }

@@ -12,6 +12,7 @@ import com.aliyuncs.profile.IClientProfile;
 import com.superstar.config.Constants;
 import com.superstar.model.common.RtData;
 import com.superstar.service.system.ShortMsgService;
+import com.superstar.util.GsonUtil;
 import com.superstar.util.ResponseBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -93,7 +94,7 @@ public class ShortMsgServiceImpl implements ShortMsgService {
         //发送验证码
         try{
 
-            sendSms(phone,code);
+            System.out.println(GsonUtil.toJson(sendSms(phone,code)));
         }catch (ClientException e){
             log.error(e.getMessage());
             return ResponseBuilder.fail("验证码发送失败请重试");

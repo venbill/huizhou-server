@@ -37,5 +37,10 @@ public interface GoodsAttributeService {
     List<GoodsPrice> getGoodsPriceList(long goodsId);
 
 
-
+    /**
+     * 查询选择属性的文字内容
+     * @param goodSelectAttributesValues
+     * @return
+     */
+    String getGoodsSelectAttributeValueContent(String goodSelectAttributesValues);
 }

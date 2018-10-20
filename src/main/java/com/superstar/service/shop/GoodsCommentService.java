@@ -20,11 +20,12 @@ public interface GoodsCommentService {
     /**
      * 获取商品分页评价
      * @param goodsId
+     * @param commentType
      * @param pageNo
      * @param pageSize
      * @return
      */
-    RtData getGoodsComments(long goodsId,int pageNo,int pageSize);
+    RtData getGoodsComments(long goodsId,int commentType,int pageNo,int pageSize);
 
 
 

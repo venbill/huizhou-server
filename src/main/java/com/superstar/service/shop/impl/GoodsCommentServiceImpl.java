@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.superstar.dao.shop.GoodsCommentMapper;
 import com.superstar.dao.shop.GoodsMapper;
 import com.superstar.dao.system.UserMapper;
+import com.superstar.enums.CommentType;
 import com.superstar.model.common.RtData;
 import com.superstar.model.shop.Goods;
 import com.superstar.model.shop.GoodsComment;
@@ -56,9 +57,22 @@ public class GoodsCommentServiceImpl  implements GoodsCommentService{
     }
 
     @Override
-    public RtData getGoodsComments(long goodsId, int pageNo, int pageSize) {
+    public RtData getGoodsComments(long goodsId,int commentType, int pageNo, int pageSize) {
         GoodsCommentExample commentExample = new GoodsCommentExample();
+        commentExample.setOrderByClause("create_time desc");
         commentExample.createCriteria().andGoodsIdEqualTo(goodsId);
+        if(commentType== CommentType.Good.getType()){
+            commentExample.getOredCriteria().get(0).andScoreEqualTo(CommentType.Good.getMinScore());
+
+        }else if(commentType==CommentType.Middle.getType()){
+            commentExample.getOredCriteria().get(0).andScoreGreaterThan(CommentType.Middle.getMinScore()).andScoreLessThan(CommentType.Middle.getMaxScore());
+
+        }else if(commentType==CommentType.Poor.getType()){
+            commentExample.getOredCriteria().get(0).andScoreLessThanOrEqualTo(CommentType.Poor.getMaxScore());
+
+        }
+
+
         PageHelper.startPage(pageNo, pageSize);
         Page<GoodsComment> goodsComments = (Page<GoodsComment>) commentMapper.selectByExample(commentExample);
         List<GoodsCommentDetail> commentDetailList = new ArrayList<>();
